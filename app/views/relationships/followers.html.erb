@@ -1,0 +1,10 @@
+<div class="container">
+  <h2>Follower Users</h2>
+  <div>
+    <% if @users.exists? %>
+      <%= render 'index', users:@users %>
+    <% else %>
+      ユーザーはいません
+    <% end %>
+  </div>
+</div>
