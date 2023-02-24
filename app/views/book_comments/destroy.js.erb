@@ -1,2 +1,4 @@
+$(".comment-count").html("コメント数: <%= @book.book_comments.count %>");
+
 $(".index_<%= @book.id %>").html("<%= escape_javascript(render partial: 'book_comments/index',
  locals: {book: @book}, method: :delete) %>");

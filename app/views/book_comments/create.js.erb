@@ -1,3 +1,6 @@
+<!--class内の要素を全て指定して非同期化として反映-->
+$(".comment-count").html("コメント数: <%= @book.book_comments.count %>");
+
 $(".index_<%= @book.id %>").html("<%= escape_javascript(render partial: 'book_comments/index',
  locals: {book: @book} ) %>");
 <!--コメント一覧直下のフォームから値を空にする-->
