@@ -1,2 +1,5 @@
 $(".index_<%= @book.id %>").html("<%= escape_javascript(render partial: 'book_comments/index',
  locals: {book: @book} ) %>");
+<!--コメント一覧直下のフォームから値を空にする-->
+<!--デベロッパーツールで確認するとidが指定されている-->
+$("#book_comment_comment").val("");
