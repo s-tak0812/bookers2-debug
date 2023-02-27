@@ -8,24 +8,6 @@ class UsersController < ApplicationController
     from  = (to - 6.day).at_beginning_of_day
     @books = @user.books.includes(:favorites).sort_by {|x| x.favorites.where(created_at: from...to).size}.reverse
 
-    current_user_entry = Entry.where(user_id: current_user.id)
-    user_entry = Entry.where(user_id: @user.id)
-    if @user.id != current_user.id
-      current_user_entry.each do |cu|
-        user_entry.each do |u|
-          if cu.room_id == u.room_id then
-            @is_room = true
-            @room_number = cu.room_id
-          end
-        end
-      end
-
-      if @is_room != true
-        @room = Room.new
-        @entry = Entry.new
-      end
-
-    end
   end
 
   def index
