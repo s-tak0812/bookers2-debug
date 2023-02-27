@@ -23,6 +23,8 @@ class User < ApplicationRecord
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: {maximum: 50 }
 
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
 
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
@@ -41,6 +43,10 @@ class User < ApplicationRecord
   # followしているかの判定
   def following?(user)
     followings.include?(user)
+  end
+
+  def followers?(user)
+    followers.include?(user)
   end
 
 

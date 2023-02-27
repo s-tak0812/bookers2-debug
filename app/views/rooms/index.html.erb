@@ -1,0 +1,17 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h1>Rooms#index</h1>
+      <h2>ログインユーザー: <strong><%= current_user.name %></strong></h2>
+
+      <div>
+        <% @rooms.each do |room| %>
+          <ul>
+            <li><%= link_to "#{room.id}", room_path(room.id) %></li>
+          </ul>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

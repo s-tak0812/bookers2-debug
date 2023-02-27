@@ -1,0 +1,15 @@
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      <h1>Rooms#show</h1>
+      <h2>ログインユーザー: <strong><%= current_user.name %></strong></h2>
+      <h3>ルームナンバー: <strong><%= @room.id %></strong></h3>
+      <div>
+        <%= link_to "削除", room_path(@room), method: :delete, class:"btn btn-danger" %>
+      </div>
+      <div>
+        <%= link_to "一覧", rooms_path, class:"mt-5 btn btn-success" %>
+      </div>
+    </div>
+  </div>
+</div>

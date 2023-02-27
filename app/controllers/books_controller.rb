@@ -4,10 +4,30 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     @user = @book.user
     @book_comment = BookComment.new
+    
+    current_user_entry = Entry.where(user_id: current_user.id)
+    user_entry = Entry.where(user_id: @user.id)
+    unless @user.id == current_user.id
+      current_user_entry.each do |current|
+        user_entry.each do |other|
+          if current.room_id == other.room_id then
+            @is_room = true
+            @room_number = current.room_id
+          end
+        end
+      end
+      unless @is_room == true
+        @room = Room.new
+        @entry = Entry.new
+      end
+    end
+
   end
 
   def index
-    @books = Book.all
+    to = Time.current.at_end_of_day
+    from = (to - 6.day).at_beginning_of_day
+    @books = Book.all.sort_by{ |x| x.favorites.where(created_at: from...to).size }.reverse
     @book = Book.new
   end
 

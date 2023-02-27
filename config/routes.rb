@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'rooms/index'
+  get 'rooms/show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :users
 
@@ -17,5 +19,8 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   get "search" => 'searches#search'
+
+  resources :messages, only: [:create, :destroy]
+  resources :rooms, only: [:index, :show, :create, :destroy]
 
 end
