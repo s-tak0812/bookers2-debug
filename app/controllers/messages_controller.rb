@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :reject_non_related, only: [:show]
+
   def show
     @user = User.find(params[:id])
     rooms = current_user.entries.pluck(:room_id)
@@ -16,12 +17,21 @@ class MessagesController < ApplicationController
     @messages = @room.messages
     @message = Message.new(room_id: @room.id)
   end
+
   def create
     @message = current_user.messages.new(message_params)
     render :validater unless @message.save
   end
 
+  def destroy
+    @message = Message.find(params[:id])
+    @message.destroy
+    redirect_to message_path(params[:room_id])
+  end
+
+
   private
+
   def message_params
     params.require(:message).permit(:body, :room_id)
   end

@@ -33,6 +33,7 @@
     <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
       <i class="fas fa-user-cog"></i>
     <% end %>
+    <%= link_to "chat一覧へ", entries_path(current_user) %>
   <% else %>
     <% if current_user.following?(user) %>
       <%= link_to "フォロー外す", user_relationship_path(user.id, user.followers), method: :delete,
@@ -41,9 +42,9 @@
       <%= link_to "フォローする", user_relationships_path(user.id), method: :post, class: "btn btn-success" %>
     <% end %>
   <% end %>
-  
+
   <% if current_user != user && current_user.following?(user) && user.following?(current_user) %>
-    <%= link_to 'chatを始める', message_path(user.id), class: "ml-3" %>
+    <%= link_to 'chatを始める', message_path(user.id), class: "ml-3 btn btn-secondary" %>
   <% end %>
 
 

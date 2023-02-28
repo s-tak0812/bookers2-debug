@@ -1,20 +1,33 @@
-<h1 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>"><%= @user.name %> さんとのチャット</h1>
+<div class='container'>
+  <div class='row'>
+    <div class="col-sm-12 col-md-10 col-lg-8 px-5 px-sm-0 mx-auto">
+      <h1>Chat Room</h1>
+      <h2 id="room" data-room="<%= @room.id %>" data-user="<%= current_user.id %>" class="border-bottom border-dark pb-2 mb-2">
+        <%= @user.name %> さんとのチャット
+      </h2>
 
-<div class="message" style="width: 400px;">
-  <% @messages.each do |m| %>
-    <% if m.user_id == current_user.id %>
-      <p style="text-align: right;"><%= m.body %></p>
-    <% else %>
-      <p style="text-align: left;"><%= m.body %></p>
-    <% end %>
-  <% end %>
+      <div class="message m-2">
+        <% @messages.each do |m| %>
+          <% if m.user_id == current_user.id %>
+            <p style="text-align: right;"><%= m.body %></p>
+            <!--%= link_to 'Destroy', message_path(m), method: :delete, class: "btn btn-danger"%>-->
+          <% else %>
+            <p style="text-align: left;"><%= m.body %></p>
+            <!--%= link_to 'Destroy', message_path(m), method: :delete, class: "btn btn-danger"%>-->
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="errors">
+        <%= render "layouts/errors", obj: @message %>
+      </div>
+
+      <%= form_with model: @message, data: {remote: true} do |f| %>
+        <%= f.text_field :body %>
+        <%= f.hidden_field :room_id %>
+        <%= f.submit "送信" %>
+      <% end %>
+
+    </div>
+  </div>
 </div>
-
-<div class="errors">
-  <%= render "layouts/errors", obj: @message %>
-</div>
-
-<%= form_with model: @message, data: {remote: true} do |f| %>
-  <%= f.text_field :body %>
-  <%= f.hidden_field :room_id %>
-<% end %>
