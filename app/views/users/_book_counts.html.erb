@@ -39,7 +39,7 @@
           <% if before_last_week == 0 %>
             none
           <% else %>
-            <%= ((last_7_days/before_last_week).to_f*100).round %>%
+            <%= (last_7_days/before_last_week.to_f*100).round %>%
           <% end %>
         </td>
       </tr>

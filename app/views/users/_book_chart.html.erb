@@ -23,3 +23,36 @@
     </tr>
   </tbody>
 </table>
+
+<div class="bg-ligth">
+  <p class="text-center">7日間の投稿数の比較</p>
+  <canvas id="myChart"></canvas>
+  <script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["6日前", "5日前", "4日前", "3日前", "2日前", "1日前", "今日"],
+            datasets: [{
+                label: '投稿した本の数',
+                data: [
+                  <%= before_6days %>, <%= before_5days %>, <%= before_4days %>,
+                  <%= before_3days %>, <%= before_2days %>,<%= yesterday %>, <%= today %>
+                  ],
+                backgroundColor: 'rgba(0,0,0, 0)',
+                borderColor: 'rgba(153, 102, 255, 1)',
+                borderWidth: 3
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+  </script>
+</div>
