@@ -7,7 +7,10 @@ class UsersController < ApplicationController
     to  = Time.current.at_end_of_day
     from  = (to - 6.day).at_beginning_of_day
     @books = @user.books.includes(:favorites).sort_by {|x| x.favorites.where(created_at: from...to).size}.reverse
-
+    @today = (@user.books.created_today.count).to_i
+    @yesterday = (@user.books.created_yesterday.count).to_i
+    @last_7_days = (@user.books.created_last_7_days.count).to_i
+    @before_last_week = (@user.books.created_before_last_week.count).to_i
   end
 
   def index

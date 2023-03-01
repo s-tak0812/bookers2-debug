@@ -9,6 +9,59 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
+
+      <div class='col-md-10'>
+        <h2>投稿数の前日比・前週比</h2>
+        <table class='table table-hover table-bordered'>
+          <thead>
+            <tr>
+              <th>今日の投稿数</th>
+              <th>前日の投稿数</th>
+              <th>前日比</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th><%= @today %></th>
+              <th><%= @yesterday %></th>
+              <th>
+                <% if @yesterday == 0 %>
+                  <%= (@today*100).round %>%
+                <% else %>
+                  <%= ((@today/@yesterday).to_f*100).round %>%
+                <% end %>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+
+        <table class='table table-hover table-bordered'>
+          <thead>
+            <tr>
+              <th>今週の投稿数</th>
+              <th>前週の投稿数</th>
+              <th>前週比</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th><%= @last_7_days %></th>
+              <th><%= @before_last_week %></th>
+              <th>
+                <% if @before_last_week == 0 %>
+                  <%= (@last_7_days*100).round %>%
+                <% else %>
+                  <%= ((@last_7_days/@before_last_week).to_f*100).round %>%
+                <% end %>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+
+
     </div>
   </div>
 </div>
