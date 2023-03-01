@@ -10,15 +10,15 @@
     </thead>
     <tbody>
       <tr>
-        <th><%= today %></th>
-        <th><%= yesterday %></th>
-        <th>
+        <td><%= today %></td>
+        <td><%= yesterday %></td>
+        <td>
           <% if yesterday == 0 %>
             none
           <% else %>
             <%= ((today/yesterday).to_f*100).round %>%
           <% end %>
-        </th>
+        </td>
       </tr>
     </tbody>
   </table>
@@ -33,15 +33,15 @@
     </thead>
     <tbody>
       <tr>
-        <th><%= last_7_days %></th>
-        <th><%= before_last_week %></th>
-        <th>
+        <td><%= last_7_days %></td>
+        <td><%= before_last_week %></td>
+        <td>
           <% if before_last_week == 0 %>
             none
           <% else %>
             <%= ((last_7_days/before_last_week).to_f*100).round %>%
           <% end %>
-        </th>
+        </td>
       </tr>
     </tbody>
   </table>

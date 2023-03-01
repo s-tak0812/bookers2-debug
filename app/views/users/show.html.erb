@@ -2,14 +2,18 @@
   <div class='row'>
     <div class='col-md-3'>
       <h2>User info</h2>
-      <%= render 'info', user: @user, room: @room, entry: @entry, isRoom: @is_room, roomNumber: @room_number %>
+      <%= render 'info', user: @user %>
       <h2 class="mt-3">New book</h2>
       <%= render 'books/form', book: @book %>
     </div>
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
-      <%= render 'users/book_counts', today: @today, yesterday: @yesterday, last_7_days: @last_7_days, before_last_week: @before_last_week %>
+      <%= render 'users/book_counts', today: @today, yesterday: @yesterday,
+      last_7_days: @last_7_days, before_last_week: @before_last_week %>
+      <%= render 'users/book_chart', today: @today, yesterday: @yesterday,
+      before_2days: @before_2days, before_3days: @before_3days, before_4days: @before_4days,
+      before_5days: @before_5days, before_6days: @before_6days %>
     </div>
   </div>
 </div>
