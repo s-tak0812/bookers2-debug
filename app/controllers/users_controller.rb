@@ -17,6 +17,8 @@ class UsersController < ApplicationController
     @before_4days = (@user.books.created_4days_ago.count).to_i
     @before_5days = (@user.books.created_5days_ago.count).to_i
     @before_6days = (@user.books.created_6days_ago.count).to_i
+
+    @books_shown = @user.books.page(params[:page])
   end
 
   def index
