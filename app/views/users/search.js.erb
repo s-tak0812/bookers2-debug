@@ -1,3 +1,2 @@
-$("#results").html("<%= escape_javascript(
-render partial: 'users/search', locals: {results: @results} ) %>");
+$("#results").html("<%= j(render 'users/search', results: @results ) %>");
 

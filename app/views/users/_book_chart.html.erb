@@ -13,11 +13,11 @@
   </thead>
   <tbody>
     <tr>
-      <td><%= before_6days %></td>
-      <td><%= before_5days %></td>
-      <td><%= before_4days %></td>
-      <td><%= before_3days %></td>
-      <td><%= before_2days %></td>
+      <td><%= user.books.created_6days_ago.count %></td>
+      <td><%= user.books.created_5days_ago.count %></td>
+      <td><%= user.books.created_4days_ago.count %></td>
+      <td><%= user.books.created_3days_ago.count %></td>
+      <td><%= user.books.created_2days_ago.count %></td>
       <td><%= yesterday %></td>
       <td><%= today %></td>
     </tr>
@@ -36,8 +36,13 @@
             datasets: [{
                 label: '投稿した本の数',
                 data: [
-                  <%= before_6days %>, <%= before_5days %>, <%= before_4days %>,
-                  <%= before_3days %>, <%= before_2days %>,<%= yesterday %>, <%= today %>
+                  <%= user.books.created_6days_ago.count %>,
+                  <%= user.books.created_5days_ago.count %>,
+                  <%= user.books.created_4days_ago.count %>,
+                  <%= user.books.created_3days_ago.count %>,
+                  <%= user.books.created_2days_ago.count %>,
+                  <%= yesterday %>,
+                  <%= today %>,
                   ],
                 backgroundColor: 'rgba(0,0,0, 0)',
                 borderColor: 'rgba(153, 102, 255, 1)',

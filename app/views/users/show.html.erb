@@ -11,9 +11,7 @@
       <%= render 'books/index',books: @books %>
       <%= render 'users/book_counts', user: @user, today: @today, yesterday: @yesterday,
       last_7_days: @last_7_days, before_last_week: @before_last_week %>
-      <%= render 'users/book_chart', today: @today, yesterday: @yesterday,
-      before_2days: @before_2days, before_3days: @before_3days, before_4days: @before_4days,
-      before_5days: @before_5days, before_6days: @before_6days %>
+      <%= render 'users/book_chart', today: @today, yesterday: @yesterday, user: @user %>
     </div>
   </div>
 </div>
