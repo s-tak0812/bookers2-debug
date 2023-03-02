@@ -36,10 +36,10 @@ class UsersController < ApplicationController
 
 
   def search
-    @user = User.find(params[:user_id])
-    books = @user.books
-    @created_at = params[:created_at]
-    @results = books.where('created_at LIKE ? ', "#{@created_at}"+"%").count
+    user = User.find(params[:user_id])
+    books = user.books
+    @results = books.where(created_at: params[:created_at].to_date.all_day).count
+    render :search
   end
 
 

@@ -9,8 +9,17 @@
     <div class='col-md-8 offset-md-1'>
       <h2>Books</h2>
       <%= render 'books/index',books: @books %>
-      <%= render 'users/book_counts', user: @user, today: @today, yesterday: @yesterday,
-      last_7_days: @last_7_days, before_last_week: @before_last_week %>
+      <div class="container">
+        <div class="row">
+          <div class="col-8">
+            <%= render 'users/book_counts', user: @user, today: @today, yesterday: @yesterday,
+            last_7_days: @last_7_days, before_last_week: @before_last_week %>
+          </div>
+          <div class="col-4">
+            <%= render 'users/search', user: @user %>
+          </div>
+        </div>
+      </div>
       <%= render 'users/book_chart', today: @today, yesterday: @yesterday, user: @user %>
     </div>
   </div>

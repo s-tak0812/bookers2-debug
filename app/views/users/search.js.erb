@@ -1,2 +1,18 @@
-$("#results").html("<%= j(render 'users/search', results: @results ) %>");
+$("#results").html(`
+
+  <h5>検索結果</h5>
+  <table class='table table-bordered'>
+    <thead>
+      <tr>
+        <th>投稿数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= j( @results ) %></td>
+      </tr>
+    </tbody>
+  </table>
+
+`);
 

@@ -1,67 +1,46 @@
-<div class="container">
-  <div class="row">
-    <div class='col-8'>
-      <h2>投稿数の前日比・前週比</h2>
-      <table class='table table-hover table-bordered'>
-        <thead>
-          <tr>
-            <th>今日の投稿数</th>
-            <th>前日の投稿数</th>
-            <th>前日比</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= today %></td>
-            <td><%= yesterday %></td>
-            <td>
-              <% if yesterday == 0 %>
-                none
-              <% else %>
-                <%= ((today/yesterday).to_f*100).round %>%
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <table class='table table-hover table-bordered'>
-        <thead>
-          <tr>
-            <th>今週の投稿数</th>
-            <th>前週の投稿数</th>
-            <th>前週比</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><%= last_7_days %></td>
-            <td><%= before_last_week %></td>
-            <td>
-              <% if before_last_week == 0 %>
-                none
-              <% else %>
-                <%= (last_7_days/before_last_week.to_f*100).round %>%
-              <% end %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
-    <div class="col-4">
-
-      <%= form_with url: user_search_path(user), method: :get, remote:true do |f| %>
-        <%= f.date_field :created_at %>
-        <%= f.submit '検索', class: 'btn btn-primary'  %>
-      <% end %>
-
-      <div id="results">
-        <% if @results.present? %>
-          <%= render 'search', results: @results %>
+<h2>投稿数の前日比・前週比</h2>
+<table class='table table-hover table-bordered'>
+  <thead>
+    <tr>
+      <th>今日の投稿数</th>
+      <th>前日の投稿数</th>
+      <th>前日比</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= today %></td>
+      <td><%= yesterday %></td>
+      <td>
+        <% if yesterday == 0 %>
+          none
+        <% else %>
+          <%= ((today/yesterday).to_f*100).round %>%
         <% end %>
-      </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-    </div>
-  </div>
-</div>
+<table class='table table-hover table-bordered'>
+  <thead>
+    <tr>
+      <th>今週の投稿数</th>
+      <th>前週の投稿数</th>
+      <th>前週比</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= last_7_days %></td>
+      <td><%= before_last_week %></td>
+      <td>
+        <% if before_last_week == 0 %>
+          none
+        <% else %>
+          <%= (last_7_days/before_last_week.to_f*100).round %>%
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
