@@ -48,6 +48,7 @@ class User < ApplicationRecord
     followings.include?(user)
   end
 
+
   # 検索分岐
   def self.search_for(word, search_part)
     if search_part == "perfect"

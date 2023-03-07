@@ -1,11 +1,12 @@
 class Group < ApplicationRecord
   has_many:group_users, dependent: :destroy
   belongs_to :owner, class_name: 'User'
+  has_many :users, through: :group_users, source: :user
 
 
   #userがgroupに所属していればtrueを返す
   def user_belonging?(user)
-    users.includee?(user)
+    users.include?(user)
   end
 
 
@@ -17,5 +18,6 @@ class Group < ApplicationRecord
   def get_image
     (image.attached?) ? image : 'no_image.jpg'
   end
+
 
 end

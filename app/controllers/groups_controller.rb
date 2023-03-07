@@ -2,6 +2,18 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
+  def join
+    @group = Group.find(params[:group_id])
+    @group.users << current_user
+    redirect_to  groups_path
+  end
+
+  def leave
+    @group = Group.find(params[:group_id])
+    @group.users.destroy(current_user)
+    redirect_to  groups_path
+  end
+
 
   def index
     @groups = Group.all
@@ -19,6 +31,7 @@ class GroupsController < ApplicationController
     @group = Group.new(group_params)
     @group.owner_id = current_user.id
     if @group.save
+      @group.users << current_user
       redirect_to '/groups/index'
     else
       render :new
@@ -40,8 +53,10 @@ class GroupsController < ApplicationController
 
   def destroy
     @group = Group.find(params[:id])
-    @group.destroy
-    redirect_to '/groups/index'
+    if @group.owner_id == current_user.id
+      @group.destroy
+      redirect_to '/groups/index'
+    end
   end
 
   private
