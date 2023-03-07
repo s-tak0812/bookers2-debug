@@ -27,8 +27,7 @@ Rails.application.routes.draw do
   end
 
   resources :groups do
-    get "join" => 'groups#join'
-    delete "leave" => 'groups#leave'
+    resource :group_users, only: [:create, :destroy]
   end
 
 end
