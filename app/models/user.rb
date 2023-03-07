@@ -27,8 +27,7 @@ class User < ApplicationRecord
   has_many :entries, dependent: :destroy
   has_many :rooms, through: :entries
   has_many :view_counts
-  has_many :group_users
-  has_many :groups, through: :group_users
+  has_many :group_users, dependent: :destroy
 
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'

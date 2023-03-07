@@ -1,6 +1,7 @@
 class Group < ApplicationRecord
   has_many:group_users, dependent: :destroy
-  has_many:users, through: :group_users
+  belongs_to :owner, class_name: 'User'
+
 
   #userがgroupに所属していればtrueを返す
   def user_belonging?(user)
