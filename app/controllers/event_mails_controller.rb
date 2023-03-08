@@ -7,9 +7,10 @@ class EventMailsController < ApplicationController
   end
 
   def create
+    @group = Group.find_by(group_id: groups)
     @event_mail = EventMail.new(event_mail_params)
     if @event_mail.save
-      redirect_to :show
+      redirect_to :show, notice: "送信が完了しました"
     else
       render :new
     end
@@ -28,7 +29,7 @@ class EventMailsController < ApplicationController
   private
 
   def event_mail_params
-    params.require(:event_mail).permit(:title, :body)
+    params.require(:event_mail).permit(:title, :body, :group_id)
   end
 
 end
