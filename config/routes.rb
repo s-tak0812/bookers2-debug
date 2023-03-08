@@ -26,7 +26,8 @@ Rails.application.routes.draw do
 
   resources :groups do
     resource :group_users, only: [:create, :destroy]
-    resources :event_mails, only: [:new, :create, :show, :destroy]
+    resources :events, only: [:new, :create]
+    get 'events' => 'events#sent'
   end
 
 

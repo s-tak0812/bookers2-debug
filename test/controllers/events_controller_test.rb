@@ -1,6 +1,6 @@
 require "test_helper"
 
-class EventMailTest < ActiveSupport::TestCase
+class EventsControllerTest < ActionDispatch::IntegrationTest
   # test "the truth" do
   #   assert true
   # end
