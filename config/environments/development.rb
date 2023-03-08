@@ -77,15 +77,18 @@ Rails.application.configure do
 
   config.hosts.clear
 
-  # config.action_mailer.delivery_method = :smtp
-  # config.action_mailer.smtp_settings = {
-  #   address:              'smtp.gmail.com',
-  #   port:                  587,
-  #   domain:               'gmail.com',
-  #   user_name:            ENV['MAIL_ADDRESS'],
-  #   password:             ENV['MAIL_PASSWORD'],
-  #   authentication:       'plain',
-  #   enable_starttls_auto:  true
-  # }
+# ↓メールを送信するために使用
+  config.action_mailer.delivery_method = :smtp　 #メール送信にSMTPプロトコルを使用する指示
+  # メール送信に必要なSMTPサーバの接続情報の定義
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',      #SMTPサーバのアドレスを指定(ここでは、GoogleのSMTPサーバーを使用するため、smtp.gmail.comと指定されている)
+    port:                  587,                  #SMTPサーバのポート番号を指定(通常、587番ポートを使用される)
+    domain:               'gmail.com',           #SMTPサーバのドメインを指定(ここでは、Gmailのドメインgmail.comを使用)
+    user_name:            ENV['MAIL_ADDRESS'],   #SMTPサーバにログインするためのユーザー名を指定
+                                                 #環境変数からメールアドレスを取得する
+    password:             ENV['MAIL_PASSWORD'],  #SMTPサーバにログインするためのパスワードを指定
+    authentication:       'plain',               #SMTPサーバにログインするための認証方式を指定(ここでは、plain認証が使用されている)
+    enable_starttls_auto:  true                  #SMTPサーバにTLS暗号化接続を要求するためtrueに設定されている。これにより通信が暗号化されセキュリティが向上
+  }
 
 end
