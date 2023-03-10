@@ -25,6 +25,12 @@ class Book < ApplicationRecord
 
   end
 
+
+  def self.search_tag_for(vol)
+    Book.where(tag: vol)
+  end
+
+
   scope :created_today, -> { where(created_at: Time.zone.now.all_day) }
   scope :created_yesterday, -> { where(created_at: 1.day.ago.all_day)}
   scope :created_last_7_days, -> { where(created_at: Time.current.ago(6.days).beginning_of_day...Time.current.end_of_day) }

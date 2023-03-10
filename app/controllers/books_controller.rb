@@ -15,11 +15,6 @@ class BooksController < ApplicationController
     @book = Book.new
   end
 
-  def search_line
-    selection = params[:part]
-    @books = Book.all
-  end
-
   def create
     @book = Book.new(book_params)
     @book.user_id = current_user.id
@@ -56,7 +51,7 @@ class BooksController < ApplicationController
   private
 
   def book_params
-    params.require(:book).permit(:title, :body, :star)
+    params.require(:book).permit(:title, :body, :star, :tag)
   end
 
 end

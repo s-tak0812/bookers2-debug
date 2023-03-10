@@ -12,4 +12,11 @@ class SearchesController < ApplicationController
       @results = Book.search_for(@word, @seach_part)
     end
   end
+
+  def search_tag
+    @vol = params[:vol]
+    @results = Book.search_tag_for(@vol)
+  end
+
+
 end
