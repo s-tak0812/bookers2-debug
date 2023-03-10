@@ -35,4 +35,5 @@ class Book < ApplicationRecord
   scope :created_4days_ago, -> { where(created_at: 4.day.ago.all_day)}
   scope :created_5days_ago, -> { where(created_at: 5.day.ago.all_day)}
   scope :created_6days_ago, -> { where(created_at: 6.day.ago.all_day)}
+
 end
