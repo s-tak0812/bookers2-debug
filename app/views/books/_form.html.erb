@@ -8,22 +8,34 @@
     <%= f.text_area :body, class: 'form-control book_body' %>
   </div>
 
-  <div>
-    <label>Rate</label>
-    <span id="new_review"></span>
-  </div>
+  <% if book.id == nil %>
+    <div class="form-group">
+      Rate <%= f.hidden_field :star, class:'form-control' %>
+
+      <span id="new_review"></span>
+      <script>
+        $(document).on('turbolinks:load', function() {
+        let elem = document.querySelector('#new_review');
+        elem.innerHTML = ""
+        let option = {
+            starOn: "<%= asset_path('star-on.png') %>",
+            starOff: "<%= asset_path('star-off.png') %>",
+            starHalf: "<%= asset_path('star-half.png') %>",
+            scoreName: 'book[star]',
+          };
+        raty(elem,option);
+       });
+      </script>
+
+    </div>
+  <% else %>
+    <div>
+      Rate <%= render "books/rate", book: book %>
+    </div>
+  <% end %>
 
   <div class="form-group">
     <%= f.submit class: 'btn btn-success' %>
   </div>
 <% end %>
 
-<script>
-  let elem1 = document.querySelector('#new_review');
-  let add_star ={
-    starOff: "<%= asset_path('star-off.png') %>",
-    starOn: "<%= asset_path('star-on.png') %>",
-    scoreName: 'book[star]',
-  };
-  raty(elem1, add_star);
-</script>

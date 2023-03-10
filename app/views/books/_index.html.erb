@@ -23,17 +23,7 @@
 
         <td>コメント数: <%= book.book_comments.count %></td>
 
-        <td id="#review_<%= book.star %>" ></td>
-          <script>
-            let elem3 = document.querySelector('#review_<%= book.star %>');
-            let index_star ={
-              starOff: "<%= asset_path('star-off.png') %>",
-              starOn: "<%= asset_path('star-on.png') %>",
-              readOnly: true,
-              score: <%= book.star %>,
-            };
-            raty(elem3, index_star);
-          </script>
+        <td><%= render 'books/rate', book: book %></td>
 
         <td>閲覧数: <%= book.view_counts.count %></td>
 
