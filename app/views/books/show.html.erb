@@ -26,6 +26,8 @@
             コメント数: <%= @book.book_comments.count %>
           </td>
 
+          <td id="review_<%= @book.star %>"></td>
+
           <td>閲覧数: <%= @book.view_counts.count %></td>
 
           <% if @book.user.id == current_user.id %>
@@ -51,3 +53,14 @@
     </div>
   </div>
 </div>
+
+<script>
+  let elem2 = document.querySelector('#review_<%= @book.star %>');
+  let show_star ={
+    starOff: "<%= asset_path('star-off.png') %>",
+    starOn: "<%= asset_path('star-on.png') %>",
+    readOnly: true,
+    score: <%= @book.star %>,
+  };
+  raty(elem2, show_star);
+</script>
