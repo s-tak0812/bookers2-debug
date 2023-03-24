@@ -8,15 +8,11 @@ class SearchesController < ApplicationController
 
     if @model == "user"
       @results = User.search_for(@word, @seach_part)
-    else
+    elsif @model == "book"
       @results = Book.search_for(@word, @seach_part)
+    elsif @model == "tag"
+      @results = Tag.search_books_for(@word, @seach_part)
     end
   end
-
-  def search_tag
-    @vol = params[:vol]
-    @results = Book.search_tag_for(@vol)
-  end
-
 
 end

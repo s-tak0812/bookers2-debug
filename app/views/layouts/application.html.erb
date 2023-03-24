@@ -15,7 +15,10 @@
         <div class="container">
           <div class='row'>
             <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-              <%= render 'searches/form' %>
+              <div class="d-flex">
+                <div><%= render 'searches/form' %></div>
+                <div><%= render "searches/tag_form", class:"ml-3" %></div>
+              </div>
             </div>
           </div>
         </div>
